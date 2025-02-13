@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Collection - @ViewData["Title"]</title> <!-- Gives begining of title and the rest will be added by the base document-->
+    <link rel="shortcut icon" href="img\JoelHiltonHeadshot.jpg" type="=image/jpg">
+    <link rel="stylesheet" href="/css/site.css">  <!-- pulls in our online bootstrap css (real snazzy stuff)-->
+</head>
+<body>
+    <header class="bg-dark text-white text-center p-3">
+        <h1>The man, the myth, Joel</h1> <!-- go Joel-->
+        <nav>
+            <a href="/" class="text-white me-3">Home</a>
+            <a href="/Home/GettoKnowJoel" class="text-white">Get to Know Joel</a> <!-- these navigation buttons take you to the 3 pages on the web app.-->
+            <a href="/Home/MovieForm" class="text-white">Movie Form</a>
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        @RenderBody() <!-- this pulls in the body html elements from the base page calling this layout file-->
+    </div>
+
+    <footer class="bg-light text-center p-3 mt-5">
+        <!-- our beautiful footer with a 100% authentic United States Governance of Trademark Association copyright (plz don't sue)-->
+        <p>Copyright © 2025 - Built by Jeffery Yates</p>
+    </footer>
+</body>
+</html>
