@@ -27,17 +27,34 @@ namespace Mission06_Yates.Controllers
 
         public IActionResult MovieForm()
         {
-            return View();
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+            return View("MovieForm", new MovieForm());
         }
 
         [HttpPost]
 
         public IActionResult MovieForm(MovieForm response)
         {
-            _context.MovieForm.Add(response); // adds record to DB
-            _context.SaveChanges();
+            if (!ModelState.IsValid)
+            {
+                // Reload categories for the dropdown since they won't be available after validation failure
+                ViewBag.Categories = _context.Categories
+                    .OrderBy(x => x.CategoryName)
+                    .ToList();
 
-            return View("Confirmation", response);
+                return View(response); // Return form with validation errors
+            }
+            else
+            {
+                // Only save to the database if the model is valid
+                _context.Movies.Add(response);
+                _context.SaveChanges();
+
+                return View("Confirmation", response); // Redirect to confirmation page
+            }
+            
         }
     }
 }

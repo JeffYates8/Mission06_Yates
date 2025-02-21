@@ -3,16 +3,22 @@
 
 <h1>Enter Movies</h1>
 
-<form method="post">
+<form method="post" class="form-group">
     
-    <label asp-for="Category">Category:</label>
-    <input asp-for="Category" />
+    <label asp-for="CategoryId">Category Name:</label>
+    <select asp-for="CategoryId">
+        <option value="">Select a Category</option>
+        @foreach (Category m in ViewBag.Categories)
+        {
+            <option value="@m.CategoryId">@m.CategoryName</option>
+        }
+    </select>
     <br />
     <label asp-for="Title">Title:</label>
     <input asp-for="Title" />
     <br />
     <label asp-for="Year">Year:</label>
-    <input asp-for="Year" />
+    <input asp-for="Year" type="number" min="1888"/>
     <br />
     <label asp-for="Director">Director:</label>
     <input asp-for="Director" />
@@ -22,22 +28,34 @@
         <option value="G">G</option>
         <option value="PG">PG</option>
         <option value="PG-13">PG-13</option>
+        <option value="TV-PG">TV-PG</option>
         <option value="R">R</option>
+        <option value="NR">NR</option>
+        <option value="TV-14">TV-14</option>
+        <option value="UR">UR</option>
     </select>
     <br />
     <label asp-for="Edited">Edited:</label>
     <select asp-for="Edited">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
     </select>
     <br />
     <label asp-for="LentTo">Lent To:</label>
     <input asp-for="LentTo" />
+    <br />
+    <label asp-for="CopiedToPlex">Copied To Plex:</label>
+    <select asp-for="CopiedToPlex">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select>
     <br />
     <label asp-for="Notes">Notes:</label>
     <input asp-for="Notes" />
     <br />
 
     <button type="submit">Submit</button>
+
+    <div asp-validation-summary="All"></div>
 
 </form>
