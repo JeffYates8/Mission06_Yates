@@ -1,0 +1,44 @@
+﻿@model List<MovieForm>
+
+<div class="container mt-4">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped shadow-lg rounded">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Movie Title</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Director</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Edited</th>
+                    <th scope="col">Lent To</th>
+                    <th scope="col">Copied to Plex</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col" colspan="2" class="text-center">Modify Movies</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model)
+                {
+                    <tr>
+                        <td>@(x.Category?.CategoryName ?? "")</td>
+                        <td>@(x.Title ?? "")</td>
+                        <td>@(x.Year)</td>
+                        <td>@(x.Director ?? "")</td>
+                        <td>@(x.Rating ?? "")</td>
+                        <td>@(x.Edited)</td>
+                        <td>@(x.LentTo)</td>
+                        <td>@(x.CopiedToPlex)</td>
+                        <td>@(x.Notes ?? "")</td>
+
+                        <td class="text-center">
+                            <a asp-controller="Home" asp-action="Edit" asp-route-MovieId="@x.MovieId" class="btn btn-outline-primary btn-sm px-3 rounded-pill">Edit</a>
+                        </td>
+                        <td class="text-center">
+                            <a asp-controller="Home" asp-action="Delete" asp-route-MovieId="@x.MovieId" class="btn btn-outline-danger btn-sm px-3 rounded-pill">Delete</a>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

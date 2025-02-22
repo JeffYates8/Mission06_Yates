@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission06_Yates.Models;
 
 namespace Mission06_Yates.Controllers
@@ -55,6 +56,56 @@ namespace Mission06_Yates.Controllers
                 return View("Confirmation", response); // Redirect to confirmation page
             }
             
+        }
+
+        public IActionResult MovieViewList()
+        {
+            //Linq
+            var MovieList = _context.Movies
+                .Include(m => m.Category)
+                .OrderBy(x => x.Title).ToList();
+
+            return View(MovieList);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int MovieId)
+        {
+            var movieToEdit = _context.Movies
+                .Single(x => x.MovieId == MovieId);
+
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+            return View("MovieForm", movieToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(MovieForm updatedInfo)
+        {
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieViewList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int MovieId)
+        {
+            var movieToDelete = _context.Movies
+                .Single(x => x.MovieId == MovieId);
+
+            return View(movieToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(MovieForm deletedInfo)
+        {
+            _context.Movies.Remove(deletedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieViewList");
         }
     }
 }
