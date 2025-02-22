@@ -1,5 +1,7 @@
 ﻿@model List<MovieForm>
 
+
+    <!--First we create table headers, then the repeating corresponding data-->
 <div class="container mt-4">
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped shadow-lg rounded">
@@ -31,6 +33,7 @@
                         <td>@(x.CopiedToPlex)</td>
                         <td>@(x.Notes ?? "")</td>
 
+                        <!--these buttons connect to the home controller via asp-route to execute the model pullup and view change-->
                         <td class="text-center">
                             <a asp-controller="Home" asp-action="Edit" asp-route-MovieId="@x.MovieId" class="btn btn-outline-primary btn-sm px-3 rounded-pill">Edit</a>
                         </td>

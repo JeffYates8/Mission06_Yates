@@ -4,14 +4,16 @@
 @{
 }
 
-@model MovieForm
+@model MovieForm 
+<!--pulls in the movie info-->
 
 <h2>Are you sure you want to delete?</h2>
 <br />
 <h3><em>@Model.Title</em></h3>
-<h4>Directed by: @Model.Director</h4>
+<h4>Directed by: @Model.Director</h4> <!--adds movie info from the Model-->
 <br />
 
+<!--Form to delete the movie from db-->
 <form method="post">
 
     <input type="hidden" asp-for="MovieId" />

@@ -4,16 +4,16 @@ namespace Mission06_Yates.Models
 {
     public class MovieFormContext : DbContext
     {
-        public MovieFormContext(DbContextOptions<MovieFormContext> options) : base(options)
+        public MovieFormContext(DbContextOptions<MovieFormContext> options) : base(options) // Constructor
         {
         }
-        public DbSet<MovieForm> Movies { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<MovieForm> Movies { get; set; } // DbSet for MovieForm
+        public DbSet<Category> Categories { get; set; } // DbSet for Category
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) //Seed data
+        protected override void OnModelCreating(ModelBuilder modelBuilder) //Seed data for Category
         {
-            modelBuilder.Entity<Category>().HasData(
+            modelBuilder.Entity<Category>().HasData( 
 
                 new Category { CategoryId = 1, CategoryName = "Miscellaneous" },
                 new Category { CategoryName = "Drama", CategoryId = 2 },

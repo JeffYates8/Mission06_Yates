@@ -13,12 +13,12 @@ namespace Mission06_Yates.Models
         public Category? Category { get; set; } // Navigation Property
 
         [Required(ErrorMessage = "Sorry, you need to enter a title")]
-        public string Title { get; set; }
+        public string Title { get; set; } // Title of the movie
         [Required(ErrorMessage = "Sorry, you need to enter a year between 1888 and 2025")]
         [Range(1888,2025)]
         public int Year { get; set; }
-        public string? Director { get; set; }
-        public string? Rating { get; set; }
+        public string? Director { get; set; }// Director of the movie
+        public string? Rating { get; set; } // Rating of the movie
         [Required(ErrorMessage = "Sorry, you need to choose if it's been edited'")]
         public int Edited { get; set; }
         public string? LentTo { get; set; }
@@ -26,7 +26,7 @@ namespace Mission06_Yates.Models
         [Required(ErrorMessage = "Sorry, you need to choose if it is copied to Plex")]
         public int CopiedToPlex { get; set; }
 
-        [MaxLength(25)]
+        [MaxLength(25)] // Max length of 25 characters
         public string? Notes { get; set; }
     }
 }

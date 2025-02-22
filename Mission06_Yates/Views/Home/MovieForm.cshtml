@@ -3,6 +3,7 @@
 
 <h1>Enter Movie</h1>
 
+<!--Form that allows collection of all Movies table fields with a fk connection to Categories table-->
 <form method="post" class="form-group">
     
     <label asp-for="CategoryId">Category Name:</label>
@@ -56,6 +57,7 @@
 
     <button type="submit">Submit</button>
 
+    <!--Below allows the validation messages to execute for user-->
     <div asp-validation-summary="All"></div>
 
 </form>
